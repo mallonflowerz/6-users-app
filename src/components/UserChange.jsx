@@ -1,14 +1,13 @@
 import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { useUsers } from "../hooks/useUsers";
 
 export const UserChange = () => {
-    const { initialChangePassw, handlerUpdatePassword, errors } = useContext(UserContext);
+    const { initialChangePassw, handlerUpdatePassword, errorsPass } = useUsers();
 
     const [userForm, setUserForm] = useState(initialChangePassw);
     const { username, usernameNew, password } = userForm;
 
     const onInputChange = ({ target }) => {
-        // console.log(target.value)
         const { name, value } = target;
         setUserForm({
             ...userForm,
@@ -30,7 +29,7 @@ export const UserChange = () => {
                 name="username"
                 value={username}
                 onChange={onInputChange} />
-            <p className="text-danger">{errors?.username}</p>
+            <p className="text-danger">{errorsPass?.username}</p>
 
             <input
                 className="form-control my-3 w-75"
@@ -38,7 +37,7 @@ export const UserChange = () => {
                 name="usernameNew"
                 value={usernameNew}
                 onChange={onInputChange} />
-            <p className="text-danger">{errors?.usernameNew}</p>
+            <p className="text-danger">{errorsPass?.usernameNew}</p>
 
             <input
                 className="form-control my-3 w-75"
@@ -47,7 +46,7 @@ export const UserChange = () => {
                 name="password"
                 value={password}
                 onChange={onInputChange} />
-            <p className="text-danger">{errors?.password}</p>
+            <p className="text-danger">{errorsPass?.password}</p>
 
             <button
                 className="btn btn-primary"
